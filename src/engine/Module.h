@@ -43,10 +43,19 @@ struct AudioResource
     int channels = 1;
     std::vector<float> data;     // interleaved
     int frames() const noexcept { return channels > 0 ? (int) (data.size() / (size_t) channels) : 0; }
-    // Wavetables: frames of kWaveFrameSize samples, mono.
+    // Wavetables: `waveFrames` frames, each stored as `waveLevels` band-limited mip levels of
+    // kWaveFrameSize mono samples. Level L contains harmonics 1 .. (kWaveFrameSize/2) >> L.
+    // Sample (frame f, level L, index i) = data[((f * waveLevels) + L) * kWaveFrameSize + i].
     static constexpr int kWaveFrameSize = 2048;
+    static constexpr int kWaveMipLevels = 11;
     bool isWavetable = false;
-    int numWaveFrames() const noexcept { return isWavetable ? (int) (data.size() / kWaveFrameSize) : 0; }
+    int waveFrames = 0;
+    int waveLevels = 0;
+    int numWaveFrames() const noexcept { return isWavetable ? waveFrames : 0; }
+    const float* waveFrame (int f, int level) const noexcept
+    {
+        return data.data() + ((size_t) f * (size_t) waveLevels + (size_t) level) * (size_t) kWaveFrameSize;
+    }
 };
 
 struct ParamInputs
