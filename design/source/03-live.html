@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>WEFT — Live mode</title>
+<script src="9afd6f41-47aa-43d0-be0d-20a302d55c7b"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>[fonts]</style>
+<style>
+body{margin:0;background:#0B0B0A}
+.m{font-family:'Geist Mono',ui-monospace,monospace}
+button{font-family:inherit;color:inherit}
+a{color:#EDEDE8}a:hover{color:#FFFFFF}
+</style>
+</helmet>
+<div style="width: 1440px; height: 960px; box-sizing: border-box; padding: 16px; background: #0B0B0A; color: #EDEDE8; font-family: 'Geist', system-ui, sans-serif; display: flex; flex-direction: column; gap: 12px">
+
+  <div style="height: 56px; flex-shrink: 0; display: flex; align-items: center; gap: 20px; padding: 0 6px 0 10px">
+    <span style="font-size: 26px; font-weight: 800; letter-spacing: -0.02em">WEFT</span>
+    <span class="m" style="font-size: 11px; letter-spacing: 0.14em; padding: 6px 10px; border: 1px solid #3A3A37; border-radius: 6px">LIVE</span>
+    <span style="font-size: 14px; font-weight: 600">Glass Choir</span>
+    <span class="m" style="font-size: 11px; color: #A3A39D">014 · TEXTURE</span>
+    <div style="flex: 1"></div>
+    <div class="m" style="display: flex; align-items: center; gap: 18px; font-size: 12px; color: #A3A39D">
+      <span>120.0 BPM · HOST SYNC</span>
+      <span style="display: flex; align-items: center; gap: 8px; color: #EDEDE8"><span style="width: 10px; height: 10px; border-radius: 50%; background: #FF4A3D"></span>REC TAKE 00:42</span>
+    </div>
+    <a href="Main.dc.html" class="m" style="height: 44px; padding: 0 18px; border-radius: 10px; background: #1C1C1A; display: flex; align-items: center; text-decoration: none; font-size: 12px; font-weight: 600; letter-spacing: 0.1em">← EDIT</a>
+  </div>
+
+  <div style="flex: 1; min-height: 0; display: flex; gap: 16px">
+
+    <!-- MORPH PAD -->
+    <div style="width: 690px; flex-shrink: 0; display: flex; flex-direction: column; gap: 10px">
+      <div style="display: flex; align-items: baseline; gap: 12px">
+        <span class="m" style="font-size: 11px; font-weight: 600; letter-spacing: 0.12em">MORPH</span>
+        <span style="font-size: 12px; color: #A3A39D">drag between four scenes — every knob glides, the routing stays</span>
+      </div>
+      <div style="flex: 1; background-color: #141413; background-image: radial-gradient(#3A3A37 1.2px, transparent 1.4px); background-size: 57px 58px; background-position: 28px 29px; border: 1px solid #2A2A27; border-radius: 16px; position: relative; overflow: hidden">
+        <svg width="688" height="100%" sc-camel-view-box="0 0 688 640" sc-camel-preserve-aspect-ratio="none" aria-hidden="true" style="display: block; position: absolute; inset: 0">
+          <line x1="344" y1="0" x2="344" y2="640" stroke="#24241F" stroke-width="1"></line>
+          <line x1="0" y1="320" x2="688" y2="320" stroke="#24241F" stroke-width="1"></line>
+          <path d="{{trail}}" fill="none" stroke="#EDEDE8" stroke-width="1.5" stroke-linecap="round" opacity="0.35"></path>
+          <circle cx="{{px}}" cy="{{py}}" r="34" fill="none" stroke="#EDEDE8" stroke-width="1" opacity="0.25"></circle>
+          <circle cx="{{px}}" cy="{{py}}" r="16" fill="#EDEDE8"></circle>
+          <circle cx="{{px}}" cy="{{py}}" r="5" fill="#141413"></circle>
+        </svg>
+        <sc-for list="{{corners}}" as="cn" hint-placeholder-count="4">
+          <div style="position: absolute; left: {{cn.l}}; right: {{cn.r}}; top: {{cn.t}}; bottom: {{cn.b}}; display: flex; flex-direction: column; gap: 6px; align-items: {{cn.align}}">
+            <div style="display: flex; align-items: center; gap: 10px; flex-direction: {{cn.dir}}">
+              <span class="m" style="width: 40px; height: 40px; border-radius: 10px; background: {{cn.bg}}; color: {{cn.fg}}; border: 1px solid #3A3A37; box-sizing: border-box; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 600">{{cn.id}}</span>
+              <span style="font-size: 13px; font-weight: 600">{{cn.name}}</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px; flex-direction: {{cn.dir}}">
+              <span style="width: 90px; height: 4px; background: #2A2A27; border-radius: 2px; display: flex; justify-content: {{cn.jus}}"><span style="width: {{cn.w}}px; height: 4px; background: #EDEDE8; border-radius: 2px"></span></span>
+              <span class="m" style="font-size: 11px; color: #A3A39D">{{cn.pct}}</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <!-- MACROS -->
+    <div style="width: 392px; flex-shrink: 0; background: #141413; border: 1px solid #2A2A27; border-radius: 16px; padding: 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px">
+      <div style="display: flex; align-items: baseline; justify-content: space-between">
+        <span class="m" style="font-size: 11px; font-weight: 600; letter-spacing: 0.12em">MACROS</span>
+        <span class="m" style="font-size: 10px; color: #A3A39D">MIDI LEARN · CC 20–27</span>
+      </div>
+      <div style="flex: 1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(4, minmax(0, 1fr)); gap: 8px">
+        <sc-for list="{{macros}}" as="mc" hint-placeholder-count="8">
+          <div style="background: #1C1C1A; border-radius: 12px; display: flex; align-items: center; gap: 12px; padding: 0 12px">
+            <svg width="{{mc.k.s}}" height="{{mc.k.s}}" sc-camel-view-box="{{mc.k.vb}}" aria-hidden="true" style="display: block; flex-shrink: 0">
+              <path d="{{mc.k.track}}" fill="none" stroke="#3A3A37" stroke-width="{{mc.k.sw}}" stroke-linecap="round"></path>
+              <path d="{{mc.k.val}}" fill="none" stroke="#EDEDE8" stroke-width="{{mc.k.sw}}" stroke-linecap="round"></path>
+              <circle cx="{{mc.k.c}}" cy="{{mc.k.c}}" r="{{mc.k.rb}}" fill="#262624" stroke="#EDEDE8" stroke-width="1.4"></circle>
+              <line x1="{{mc.k.px1}}" y1="{{mc.k.py1}}" x2="{{mc.k.px2}}" y2="{{mc.k.py2}}" stroke="#EDEDE8" stroke-width="2.6" stroke-linecap="round"></line>
+            </svg>
+            <div style="display: flex; flex-direction: column; gap: 3px; min-width: 0">
+              <span style="font-size: 15px; font-weight: 700; color: {{mc.fg}}">{{mc.l}}</span>
+              <span class="m" style="font-size: 11px; color: #A3A39D">{{mc.info}}</span>
+              <span class="m" style="font-size: 18px; font-weight: 500; color: {{mc.fg}}">{{mc.val}}</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <!-- LANES -->
+    <div style="flex: 1; min-width: 0; background: #141413; border: 1px solid #2A2A27; border-radius: 16px; padding: 16px 12px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px">
+      <span class="m" style="font-size: 11px; font-weight: 600; letter-spacing: 0.12em; padding-left: 4px">LANES</span>
+      <div style="flex: 1; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px">
+        <sc-for list="{{lanes}}" as="ln" hint-placeholder-count="4">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 8px">
+            <span class="m" style="font-size: 18px; font-weight: 600">{{ln.id}}</span>
+            <span class="m" style="font-size: 9px; color: #A3A39D; letter-spacing: 0.1em">{{ln.name}}</span>
+            <div style="flex: 1; width: 44px; position: relative; display: flex; justify-content: center">
+              <span style="width: 6px; height: 100%; background: #2A2A27; border-radius: 3px; position: relative; display: block">
+                <span style="position: absolute; bottom: 0; left: 0; width: 6px; height: {{ln.lvl}}%; background: #EDEDE8; border-radius: 3px"></span>
+              </span>
+              <span style="position: absolute; left: 0; bottom: {{ln.lvl}}%; width: 44px; height: 22px; margin-bottom: -11px; background: #EDEDE8; border-radius: 6px; display: block"></span>
+            </div>
+            <button class="m" aria-pressed="{{ln.mute}}" style="width: 100%; height: 44px; border-radius: 9px; border: 1px solid #3A3A37; background: {{ln.mBg}}; color: {{ln.mFg}}; font-size: 11px; font-weight: 600; cursor: pointer">M</button>
+            <button class="m" style="width: 100%; height: 44px; border-radius: 9px; border: 1px solid #3A3A37; background: transparent; font-size: 11px; font-weight: 600; cursor: pointer">S</button>
+            <button class="m" aria-pressed="{{ln.frz}}" style="width: 100%; height: 44px; border-radius: 9px; border: 1px solid #3A3A37; background: {{ln.fBg}}; color: {{ln.fFg}}; font-size: 10px; font-weight: 600; cursor: pointer">FRZ</button>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTION BAR -->
+  <div style="height: 120px; flex-shrink: 0; display: flex; gap: 12px">
+    <button style="width: 340px; border: none; border-radius: 16px; background: #EDEDE8; color: #0B0B0A; cursor: pointer; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 6px; padding: 0 24px">
+      <span class="m" style="font-size: 20px; font-weight: 600; letter-spacing: 0.14em">MUTATE</span>
+      <span style="font-size: 12px; color: #3F3F3B">hold to audition · release to keep · knobs only, routing intact</span>
+    </button>
+    <div style="flex: 1; background: #141413; border: 1px solid #2A2A27; border-radius: 16px; padding: 18px 22px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; gap: 14px">
+      <div class="m" style="display: flex; justify-content: space-between; font-size: 11px"><span style="font-weight: 600; letter-spacing: 0.12em">CHAOS</span><span style="color: #A3A39D">18% · how far a mutation may wander</span></div>
+      <div style="height: 8px; background: #2A2A27; border-radius: 4px; position: relative">
+        <span style="position: absolute; left: 0; top: 0; width: 18%; height: 8px; background: #EDEDE8; border-radius: 4px"></span>
+        <span style="position: absolute; left: 18%; top: -9px; width: 26px; height: 26px; margin-left: -13px; border-radius: 50%; background: #EDEDE8"></span>
+      </div>
+      <div class="m" style="display: flex; justify-content: space-between; font-size: 10px; color: #8A8A85"><span>subtle</span><span>new patch</span></div>
+    </div>
+    <div style="width: 300px; background: #141413; border: 1px solid #2A2A27; border-radius: 16px; padding: 16px 18px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; gap: 10px">
+      <span class="m" style="font-size: 11px; font-weight: 600; letter-spacing: 0.12em">MUTATION HISTORY</span>
+      <div style="display: flex; gap: 5px">
+        <sc-for list="{{history}}" as="h" hint-placeholder-count="12">
+          <span style="flex: 1; height: 34px; border-radius: 5px; background: {{h.bg}}; border: 1px solid #3A3A37; box-sizing: border-box; display: block"></span>
+        </sc-for>
+      </div>
+      <span class="m" style="font-size: 10px; color: #A3A39D">7 / 12 · ‹ › step back and forth · ★ save as scene</span>
+    </div>
+    <button class="m" style="width: 140px; border-radius: 16px; border: 1px solid #FF4A3D; background: transparent; color: #FF7A70; font-size: 13px; font-weight: 600; letter-spacing: 0.12em; cursor: pointer">PANIC</button>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:960}}">
+function arc(cx, cy, r, a0, a1) {
+  if (a1 - a0 < 0.5) return '';
+  var p = function (a) { var t = (a - 90) * Math.PI / 180; return [cx + r * Math.cos(t), cy + r * Math.sin(t)]; };
+  var s = p(a0), e = p(a1);
+  return 'M' + s[0].toFixed(2) + ' ' + s[1].toFixed(2) + ' A' + r + ' ' + r + ' 0 ' + ((a1 - a0) > 180 ? 1 : 0) + ' 1 ' + e[0].toFixed(2) + ' ' + e[1].toFixed(2);
+}
+function knob(s, v) {
+  var c = s / 2, rb = s * 0.3, rt = s * 0.42, a = -135 + 270 * v, t = (a - 90) * Math.PI / 180;
+  return { s: s, c: c, rb: rb, vb: '0 0 ' + s + ' ' + s, track: arc(c, c, rt, -135, 135), val: arc(c, c, rt, -135, a),
+    px1: c + Math.cos(t) * rb * 0.25, py1: c + Math.sin(t) * rb * 0.25, px2: c + Math.cos(t) * rb * 0.9, py2: c + Math.sin(t) * rb * 0.9, sw: s * 0.05 };
+}
+class Component extends DCLogic {
+  renderVals() {
+    var gridDots = [];
+    for (var i = 1; i < 12; i++) for (var j = 1; j < 11; j++) gridDots.push({ x: i * 688 / 12, y: j * 640 / 11 });
+    var pts = [[0.18, 0.2], [0.25, 0.32], [0.22, 0.48], [0.34, 0.55], [0.48, 0.5], [0.52, 0.38], [0.44, 0.3], [0.4, 0.4]];
+    var trail = pts.map(function (p, k) { return (k ? 'L' : 'M') + (p[0] * 688).toFixed(1) + ' ' + (p[1] * 640).toFixed(1); }).join('');
+    var px = 0.4 * 688, py = 0.4 * 640;
+    var corners = [
+      { id: 'A', name: 'dry glass', pct: '22%', w: 20, l: '20px', r: 'auto', t: '20px', b: 'auto', align: 'flex-start', dir: 'row', jus: 'flex-start', on: false },
+      { id: 'B', name: 'rain bloom', pct: '41%', w: 37, l: 'auto', r: '20px', t: '20px', b: 'auto', align: 'flex-end', dir: 'row-reverse', jus: 'flex-end', on: true },
+      { id: 'C', name: 'frozen hall', pct: '27%', w: 24, l: '20px', r: 'auto', t: 'auto', b: '20px', align: 'flex-start', dir: 'row', jus: 'flex-start', on: false },
+      { id: 'D', name: 'noise bed', pct: '10%', w: 9, l: 'auto', r: '20px', t: 'auto', b: '20px', align: 'flex-end', dir: 'row-reverse', jus: 'flex-end', on: false }
+    ].map(function (c) { c.bg = c.on ? '#EDEDE8' : 'transparent'; c.fg = c.on ? '#0B0B0A' : '#EDEDE8'; return c; });
+    var macros = [['BLOOM', 0.55, '→ 3 targets', '55'], ['GRIT', 0.3, '→ 2 targets', '30'], ['SPACE', 0.7, '→ 4 targets', '70'], ['TIME', 0.45, '→ 2 targets', '45'],
+      ['DRIFT', 0.2, '→ 3 targets', '20'], ['TONE', 0.6, '→ 2 targets', '60'], ['—', 0, 'drop a knob here', '—'], ['—', 0, 'drop a knob here', '—']].map(function (m) {
+      return { l: m[0], info: m[2], val: m[3], fg: m[0] === '—' ? '#8A8A85' : '#EDEDE8', k: knob(84, m[1]) };
+    });
+    var lanes = [['A', 'VOICE', 72, false, false], ['B', 'TEXTURE', 58, false, true], ['C', 'SPACE', 80, false, false], ['D', 'BED', 34, true, false]].map(function (l) {
+      return { id: l[0], name: l[1], lvl: l[2], mute: l[3], frz: l[4], mBg: l[3] ? '#EDEDE8' : 'transparent', mFg: l[3] ? '#0B0B0A' : '#EDEDE8', fBg: l[4] ? '#EDEDE8' : 'transparent', fFg: l[4] ? '#0B0B0A' : '#EDEDE8' };
+    });
+    var history = [];
+    for (var h = 0; h < 12; h++) history.push({ bg: h === 6 ? '#EDEDE8' : (h < 6 ? '#3A3A37' : 'transparent') });
+    return { gridDots: gridDots, trail: trail, px: px, py: py, corners: corners, macros: macros, lanes: lanes, history: history };
+  }
+}
+</script>
+
+
+</body></html>

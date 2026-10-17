@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ru"><head>
+<meta charset="utf-8">
+<title>WEFT — ресерч и принципы</title>
+<script src="4405e61b-7776-464f-b6da-991638392004"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>[fonts]</style>
+<style>
+body{margin:0;background:#E6E6E1}
+.m{font-family:'Geist Mono',ui-monospace,monospace}
+a{color:#141414}a:hover{color:#5C5C57}
+</style>
+</helmet>
+<div style="width: 1440px; height: 2000px; box-sizing: border-box; padding: 64px 72px; background: #E6E6E1; color: #141414; font-family: 'Geist', system-ui, sans-serif; display: flex; flex-direction: column; gap: 52px">
+
+  <!-- HEADER -->
+  <div style="display: flex; align-items: flex-end; gap: 48px">
+    <div style="display: flex; flex-direction: column; gap: 14px; flex: 1">
+      <span class="m" style="font-size: 12px; letter-spacing: 0.14em; color: #5C5C57">01 · RESEARCH</span>
+      <h1 style="margin: 0; font-size: 84px; font-weight: 800; letter-spacing: -0.035em; line-height: 0.95">WEFT</h1>
+      <p style="margin: 0; font-size: 22px; line-height: 1.35; max-width: 760px">Модульный синтезатор, который не выглядит как модульный. Вся свобода патча — без кабелей, винтиков и пустого холста.</p>
+    </div>
+    <div class="m" style="display: flex; flex-direction: column; gap: 8px; font-size: 13px; text-align: right; color: #3F3F3B">
+      <span>VST3 · AU · CLAP</span>
+      <span>саунд-дизайн · эксперименты</span>
+      <span>текстуры · лайв</span>
+    </div>
+  </div>
+
+  <!-- 1. MARKET -->
+  <div style="display: flex; flex-direction: column; gap: 18px">
+    <div style="display: flex; align-items: baseline; gap: 16px">
+      <span class="m" style="font-size: 13px; color: #5C5C57">1</span>
+      <h2 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.01em">Что уже есть — и где болит</h2>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
+      <sc-for list="{{market}}" as="mk" hint-placeholder-count="6">
+        <div style="background: #F7F7F4; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 12px; min-height: 170px; box-sizing: border-box">
+          <div style="display: flex; justify-content: space-between; align-items: baseline">
+            <span style="font-size: 18px; font-weight: 700">{{mk.n}}</span>
+            <span class="m" style="font-size: 11px; color: #5C5C57">{{mk.tag}}</span>
+          </div>
+          <div style="display: flex; gap: 10px; font-size: 14px; line-height: 1.45"><span class="m" style="color: #12A150; font-weight: 600">+</span><span>{{mk.plus}}</span></div>
+          <div style="display: flex; gap: 10px; font-size: 14px; line-height: 1.45"><span class="m" style="color: #D2461A; font-weight: 600">−</span><span>{{mk.minus}}</span></div>
+        </div>
+      </sc-for>
+    </div>
+    <p style="margin: 0; font-size: 16px; line-height: 1.5; max-width: 1100px; color: #3F3F3B">Вывод: рынок разделён на «свободу ценой хаоса» (VCV, Rack-подобные) и «удобство ценой жёсткой архитектуры» (Phase Plant, Vital). Пустое место — <b style="color: #141414">свобода патча с интерфейсом уровня FabFilter</b>.</p>
+  </div>
+
+  <!-- 2 + 3 -->
+  <div style="display: flex; gap: 40px">
+    <div style="flex: 1.35; display: flex; flex-direction: column; gap: 18px">
+      <div style="display: flex; align-items: baseline; gap: 16px">
+        <span class="m" style="font-size: 13px; color: #5C5C57">2</span>
+        <h2 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.01em">Что делает модуляр модуляром</h2>
+      </div>
+      <p style="margin: 0; font-size: 15px; color: #3F3F3B">Сохраняем все шесть свойств — без компромиссов.</p>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+        <sc-for list="{{keep}}" as="kp" hint-placeholder-count="6">
+          <div style="background: #F7F7F4; border-radius: 12px; padding: 18px 20px; display: flex; gap: 16px; min-height: 96px; box-sizing: border-box">
+            <span class="m" style="font-size: 13px; color: #5C5C57; padding-top: 2px">{{kp.i}}</span>
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <span style="font-size: 16px; font-weight: 700">{{kp.t}}</span>
+              <span style="font-size: 14px; line-height: 1.45; color: #3F3F3B">{{kp.d}}</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="flex: 1; display: flex; flex-direction: column; gap: 18px">
+      <div style="display: flex; align-items: baseline; gap: 16px">
+        <span class="m" style="font-size: 13px; color: #5C5C57">3</span>
+        <h2 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.01em">Что выкидываем</h2>
+      </div>
+      <p style="margin: 0; font-size: 15px; color: #3F3F3B">Это привычки железа, а не суть модуляра.</p>
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <sc-for list="{{drop}}" as="dr" hint-placeholder-count="5">
+          <div style="display: grid; grid-template-columns: minmax(0, 1fr) 24px minmax(0, 1.2fr); align-items: center; background: #F7F7F4; border-radius: 12px; padding: 14px 18px; min-height: 60px; box-sizing: border-box; gap: 8px">
+            <span style="font-size: 14px; color: #5C5C57; text-decoration: line-through">{{dr.a}}</span>
+            <span class="m" style="font-size: 14px">→</span>
+            <span style="font-size: 14px; font-weight: 600">{{dr.b}}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. REFERENCES -->
+  <div style="display: flex; flex-direction: column; gap: 18px">
+    <div style="display: flex; align-items: baseline; gap: 16px">
+      <span class="m" style="font-size: 13px; color: #5C5C57">4</span>
+      <h2 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.01em">Референсы: что берём у каждого</h2>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px">
+      <sc-for list="{{refs}}" as="rf" hint-placeholder-count="5">
+        <div style="background: #141414; color: #EDEDE8; border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 12px; min-height: 250px; box-sizing: border-box">
+          <span style="font-size: 17px; font-weight: 700">{{rf.n}}</span>
+          <span class="m" style="font-size: 11px; color: #A3A39D">{{rf.w}}</span>
+          <span style="font-size: 14px; line-height: 1.45; color: #D6D6D0; flex: 1">{{rf.d}}</span>
+          <span style="height: 1px; background: #3A3A37"></span>
+          <span style="font-size: 13px; line-height: 1.4; font-weight: 600">→ {{rf.take}}</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- 5 + 6 -->
+  <div style="display: flex; gap: 40px">
+    <div style="flex: 1.6; display: flex; flex-direction: column; gap: 18px">
+      <div style="display: flex; align-items: baseline; gap: 16px">
+        <span class="m" style="font-size: 13px; color: #5C5C57">5</span>
+        <h2 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.01em">Решения: возможность модуляра → как в WEFT</h2>
+      </div>
+      <div style="display: flex; flex-direction: column; background: #F7F7F4; border-radius: 14px; padding: 6px 22px">
+        <sc-for list="{{decisions}}" as="dc" hint-placeholder-count="8">
+          <div style="display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 20px; padding: 13px 0; border-top: {{dc.border}}">
+            <span style="font-size: 14px; font-weight: 700">{{dc.a}}</span>
+            <span style="font-size: 14px; line-height: 1.45; color: #3F3F3B">{{dc.b}}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="flex: 1; display: flex; flex-direction: column; gap: 18px">
+      <div style="display: flex; align-items: baseline; gap: 16px">
+        <span class="m" style="font-size: 13px; color: #5C5C57">6</span>
+        <h2 style="margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -0.01em">Критерии прототипа</h2>
+      </div>
+      <p style="margin: 0; font-size: 15px; color: #3F3F3B">Проверяем на 5–8 саунд-дизайнерах, юзабилити-тест без обучения.</p>
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <sc-for list="{{metrics}}" as="mt" hint-placeholder-count="4">
+          <div style="background: #F7F7F4; border-radius: 12px; padding: 18px 20px; display: flex; align-items: center; gap: 20px">
+            <span class="m" style="font-size: 30px; font-weight: 600; min-width: 112px; letter-spacing: -0.02em">{{mt.v}}</span>
+            <span style="font-size: 14px; line-height: 1.45">{{mt.d}}</span>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display: flex; gap: 8px; align-items: center; padding-top: 6px">
+        <span style="width: 12px; height: 12px; border-radius: 50%; background: #2F5BFF"></span>
+        <span style="width: 12px; height: 12px; border-radius: 50%; background: #FF6B1A"></span>
+        <span style="width: 12px; height: 12px; border-radius: 50%; background: #C99700"></span>
+        <span style="width: 12px; height: 12px; border-radius: 50%; background: #12A150"></span>
+        <span style="width: 12px; height: 12px; border-radius: 50%; background: #E8337F"></span>
+        <span style="width: 12px; height: 12px; border-radius: 50%; background: #0E9FBF"></span>
+        <span style="font-size: 13px; color: #3F3F3B; margin-left: 8px">Главное правило интерфейса: шасси монохромное, <b style="color: #141414">цвет всегда означает модуляцию</b>.</span>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:2000}}">
+class Component extends DCLogic {
+  renderVals() {
+    var market = [
+      { n: 'VCV Rack 2', tag: 'эмуляция Eurorack', plus: 'Безграничная свобода, тысячи модулей, огромное сообщество.', minus: 'Скевоморфизм: мелкие ручки, винты, кабельная лапша. Пустой холст. Патч не читается через неделю.' },
+      { n: 'Bitwig Grid', tag: 'модуляр в DAW', plus: 'Плоский чистый UI, полифония, аудио-фидбэк, отличная интеграция.', minus: 'Живёт только внутри Bitwig. Модули низкоуровневые — простой патч требует много узлов.' },
+      { n: 'Phase Plant', tag: 'Kilohearts', plus: 'Ближе всего к цели: генераторы, цепочки эффектов, drag-модуляция.', minus: 'Это цепочка, а не патч: топология задана заранее, самоиграющие системы собирать неудобно.' },
+      { n: 'Vital / Serum 2', tag: 'wavetable', plus: 'Эталон «тяни и модулируй» и живой визуализации модуляции.', minus: 'Фиксированная архитектура синтезатора — маршрутизацию звука не поэкспериментируешь.' },
+      { n: 'Softube Modular · Voltage', tag: 'железо в софте', plus: 'Звучат как реальные модули, понятны владельцам Eurorack.', minus: 'Тот же скевоморфизм и кабели, только в другой обёртке.' },
+      { n: 'Reaktor Blocks · Zebra', tag: 'глубокие среды', plus: 'Огромная гибкость и звуковой потенциал.', minus: 'Тяжёлый вход: перегруженные экраны, легко утонуть, сложно играть вживую.' }
+    ];
+    var keep = [
+      { i: '01', t: 'Любая маршрутизация', d: 'Звук идёт куда угодно, включая обратную связь между линиями.' },
+      { i: '02', t: 'Всё модулирует всё', d: 'Включая модуляцию модуляторов и аудио-рейт FM от любой ячейки.' },
+      { i: '03', t: 'Самоиграющие системы', d: 'Секвенсоры, случайность, логика, follower — патч живёт сам.' },
+      { i: '04', t: 'Внешний звук как сырьё', d: 'Вход, гранулятор, follower: обработка любого источника.' },
+      { i: '05', t: 'Неожиданность', d: 'Дрейф, хаос, мутации — то, ради чего идут в модуляр.' },
+      { i: '06', t: 'Одна ручка = одна функция', d: 'Видно всё сразу, без меню и вкладок внутри модуля.' }
+    ];
+    var drop = [
+      { a: 'Кабели как основной интерфейс', b: 'Цветные точки + матрица PATCH' },
+      { a: 'Винты, рельсы, фото-ручки', b: 'Плоские модули с живыми дисплеями' },
+      { a: 'Пустой бесконечный холст', b: 'Сетка 4×4 и Seeds-стартеры' },
+      { a: 'Сотни модулей-дублей', b: '28 глубоких модулей, 4 семейства' },
+      { a: 'Мелкие ручки по всему экрану', b: '4 больших энкодера фокуса' }
+    ];
+    var refs = [
+      { n: 'Teenage Engineering', w: 'OP-1 · OP-Z · EP-133', d: 'Ограничение как инструмент. Цветовое кодирование, моноширинная типографика, характер в мелочах.', take: 'сетка 4×4 и цвет как смысл' },
+      { n: 'FabFilter', w: 'Pro-Q · Twin · Saturn', d: 'Дисплей — это интерфейс: тянешь прямо за кривую. Модуляция drag-and-drop с видимыми диапазонами.', take: 'интерактивный дисплей фокуса' },
+      { n: 'oeksound soothe', w: 'soothe3', d: 'Один экран, тишина вокруг, точная графика. Ничего лишнего на поверхности.', take: 'монохромное шасси, минимум шума' },
+      { n: 'EMS VCS3 · Synthi', w: '1969', d: 'Пин-матрица вместо кабелей: каждое соединение — штырёк в сетке, видно весь патч.', take: 'режим PATCH как матрица' },
+      { n: 'Synplant', w: 'Sonic Charge', d: 'Звук «выращивается» мутациями от удачного варианта, а не собирается с нуля.', take: 'MUTATE + история шагов' }
+    ];
+    var d = [
+      ['Аудио-маршрутизация', '4 линии × 4 ячейки, звук течёт слева направо. Выход линии отправляется в MIX и/или в другую линию — в том числе назад, для фидбэка.'],
+      ['Модуляция', '8 модуляторов, у каждого свой цвет. Тянешь цветную точку на ручку — появляется кольцо глубины.'],
+      ['Кабели', 'Вид PATCH: матрица источник × приёмник. Точка = кабель, размер = глубина, полая точка = инверсия.'],
+      ['Аудио-рейт', 'Выход любой ячейки тоже источник модуляции (A1~): FM, ring, кросс-модуляция.'],
+      ['Мод → мод', 'Параметры модуляторов — такие же приёмники: SEQ двигает частоту LFO.'],
+      ['Макросы', '8 макросов — строки в матрице. Один жест двигает много параметров.'],
+      ['Лайв', 'Вид LIVE: XY-морф между 4 сценами, MUTATE с историей, FREEZE на линию, MIDI learn.'],
+      ['Полифония', 'MONO / POLY 8 глобально: патч целиком дублируется на голос.']
+    ];
+    var decisions = d.map(function (x, i) { return { a: x[0], b: x[1], border: i ? '1px solid #DCDCD7' : 'none' }; });
+    var metrics = [
+      { v: '< 10 с', d: 'от открытия до первого звука (Seeds)' },
+      { v: '< 60 с', d: 'патч: 3 модуля + 2 модуляции, без подсказок' },
+      { v: '0', d: 'кабелей на экране в режиме PLAY' },
+      { v: '1 экран', d: 'весь патч виден без скролла и вкладок' }
+    ];
+    return { market: market, keep: keep, drop: drop, refs: refs, decisions: decisions, metrics: metrics };
+  }
+}
+</script>
+
+
+</body></html>

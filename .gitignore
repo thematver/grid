@@ -1,0 +1,5 @@
+build/
+.DS_Store
+*.xcuserstate
+/design/diff/
+/tools/design-capture/capture

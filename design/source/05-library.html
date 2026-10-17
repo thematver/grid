@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru"><head>
+<meta charset="utf-8">
+<title>WEFT — библиотека модулей</title>
+<script src="3248e62e-53ca-4a3a-8c15-87cf8ccf4928"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>[fonts]</style>
+<style>
+body{margin:0;background:#E6E6E1}
+.m{font-family:'Geist Mono',ui-monospace,monospace}
+a{color:#141414}a:hover{color:#5C5C57}
+</style>
+</helmet>
+<div style="width: 1440px; height: 940px; box-sizing: border-box; padding: 56px 72px; background: #E6E6E1; color: #141414; font-family: 'Geist', system-ui, sans-serif; display: flex; flex-direction: column; gap: 28px">
+
+  <div style="display: flex; align-items: flex-end; justify-content: space-between; height: 96px">
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <span class="m" style="font-size: 12px; letter-spacing: 0.14em; color: #5C5C57">05 · LIBRARY</span>
+      <h2 style="margin: 0; font-size: 44px; font-weight: 800; letter-spacing: -0.025em">28 модулей, 4 семейства</h2>
+    </div>
+    <span style="font-size: 15px; color: #3F3F3B; max-width: 480px; text-align: right; line-height: 1.45">Мало, но глубоко: каждый модуль закрывает целый класс Eurorack-модулей. Звуковые — в ячейки, CONTROL — в полосу модуляторов.</span>
+  </div>
+
+  <div style="flex: 1; display: flex; flex-direction: column; gap: 10px">
+    <sc-for list="{{rows}}" as="row" hint-placeholder-count="5">
+      <div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 10px; height: 124px">
+        <sc-if value="{{row.head}}" hint-placeholder-val="{{ true }}">
+          <div style="border-radius: 12px; padding: 16px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; background: #141414; color: #EDEDE8">
+            <span class="m" style="font-size: 13px; font-weight: 600; letter-spacing: 0.12em">{{row.name}}</span>
+            <span style="font-size: 13px; line-height: 1.4; color: #D6D6D0">{{row.desc}}</span>
+          </div>
+        </sc-if>
+        <sc-if value="{{row.cont}}" hint-placeholder-val="{{ false }}">
+          <div style="border-radius: 12px; border: 1px solid #CFCFC9; padding: 16px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: flex-end">
+            <span class="m" style="font-size: 11px; color: #5C5C57">CONTROL · продолжение</span>
+          </div>
+        </sc-if>
+        <sc-for list="{{row.items}}" as="it" hint-placeholder-count="6">
+          <div style="background: #F7F7F4; border-radius: 12px; padding: 12px; box-sizing: border-box; display: flex; flex-direction: column; gap: 8px">
+            <div style="height: 32px; background: #0F0F0E; border-radius: 6px; overflow: hidden; flex-shrink: 0">
+              <svg width="100%" height="32" sc-camel-view-box="0 0 200 32" sc-camel-preserve-aspect-ratio="none" aria-hidden="true" style="display: block"><path d="{{it.viz}}" fill="none" stroke="{{it.c}}" stroke-width="1.5" vector-effect="non-scaling-stroke"></path></svg>
+            </div>
+            <span class="m" style="font-size: 13px; font-weight: 600; letter-spacing: 0.04em">{{it.n}}</span>
+            <span style="font-size: 12px; line-height: 1.35; color: #3F3F3B">{{it.d}}</span>
+          </div>
+        </sc-for>
+        <sc-if value="{{row.tail}}" hint-placeholder-val="{{ false }}">
+          <div style="grid-column: span 2; border-radius: 12px; border: 1.5px dashed #BDBDB7; padding: 16px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; gap: 6px">
+            <span style="font-size: 14px; font-weight: 700">Свои модули</span>
+            <span style="font-size: 12px; line-height: 1.4; color: #3F3F3B">Любой мини-патч из ячеек сохраняется как один модуль — с двумя ручками на выбор.</span>
+          </div>
+        </sc-if>
+      </div>
+    </sc-for>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:940}}">
+function rng(seed) { var s = seed; return function () { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; }; }
+function line(fn, w, h, n) { var d = ''; for (var i = 0; i <= n; i++) { var x = i / n; d += (i ? 'L' : 'M') + (x * w).toFixed(1) + ' ' + (h / 2 - fn(x) * h * 0.42).toFixed(1); } return d; }
+function bars(vals, w, h) { var d = ''; vals.forEach(function (v, j) { var x = (j + 0.5) * w / vals.length; d += 'M' + x.toFixed(1) + ' ' + (h * 0.9).toFixed(1) + 'L' + x.toFixed(1) + ' ' + (h * 0.9 - v * h * 0.8).toFixed(1); }); return d; }
+function lines(n, w, h, amp, r) { var d = ''; for (var i = 0; i < n; i++) { var x = i * w / n, a = amp(i / n, r); d += 'M' + x.toFixed(1) + ' ' + (h / 2 - a * h * 0.45).toFixed(1) + 'L' + x.toFixed(1) + ' ' + (h / 2 + a * h * 0.45).toFixed(1); } return d; }
+function viz(t, w, h) {
+  var r = rng(t.length * 977 + t.charCodeAt(0) * 31 + t.charCodeAt(t.length - 1)), T = Math.PI * 2;
+  var sq = function (x, f) { return ((x * f) % 1) < 0.5 ? 0.85 : -0.85; };
+  switch (t) {
+    case 'osc': return line(function (x) { var p = (x * 3) % 1; return p * 1.7 - 0.85; }, w, h, 300);
+    case 'wave': return line(function (x) { return 0.68 * Math.sin(T * 2 * x) + 0.24 * Math.sin(T * 6 * x + 1) + 0.1 * Math.sin(T * 11 * x); }, w, h, 180);
+    case 'noise': return line(function () { return (r() * 2 - 1) * 0.85; }, w, h, 150);
+    case 'grain': return lines(46, w, h, function (x, rr) { return rr() * 0.9; }, r);
+    case 'input': return line(function (x) { return (0.5 * Math.sin(T * 4 * x) + 0.3 * (r() * 2 - 1)) * (0.4 + 0.6 * Math.abs(Math.sin(T * x))); }, w, h, 160);
+    case 'pluck': return line(function (x) { return Math.exp(-x * 4) * Math.sin(T * 9 * x) * 0.95; }, w, h, 220);
+    case 'filter': return line(function (x) { return x < 0.45 ? 0.4 + x * 0.6 : 0.67 - (x - 0.45) * 3.4; }, w, h, 60);
+    case 'fold': return line(function (x) { var v = 1.9 * Math.sin(T * 2 * x); while (Math.abs(v) > 1) { v = v > 0 ? 2 - v : -2 - v; } return v * 0.95; }, w, h, 220);
+    case 'drive': return line(function (x) { return Math.tanh(3 * Math.sin(T * 2 * x)) * 0.9; }, w, h, 160);
+    case 'ring': return line(function (x) { return Math.sin(T * 2 * x) * Math.sin(T * 13 * x) * 0.95; }, w, h, 260);
+    case 'comb': return line(function (x) { return Math.pow(Math.abs(Math.cos(Math.PI * 7 * x)), 6) * 1.7 - 0.85; }, w, h, 260);
+    case 'formant': return line(function (x) { return (Math.exp(-Math.pow((x - 0.2) * 12, 2)) + 0.8 * Math.exp(-Math.pow((x - 0.5) * 14, 2)) + 0.6 * Math.exp(-Math.pow((x - 0.75) * 16, 2))) * 1.6 - 0.8; }, w, h, 200);
+    case 'delay': return lines(6, w, h, function (x) { return Math.pow(0.6, x * 6) * 0.9; }, r);
+    case 'verb': return lines(90, w, h, function (x, rr) { return Math.exp(-x * 2.2) * (0.3 + 0.7 * rr()); }, r);
+    case 'shift': return line(function (x) { return Math.sin(T * (2 + x * 8) * x) * 0.8; }, w, h, 240);
+    case 'freeze': return lines(90, w, h, function (x, rr) { return 0.25 * (0.4 + 0.6 * rr()); }, r);
+    case 'chorus': return line(function (x) { return 0.45 * Math.sin(T * 3 * x) + 0.45 * Math.sin(T * 3.3 * x + 0.6); }, w, h, 200);
+    case 'loop': return line(function (x) { return ((x * 4) % 1 < 0.04 ? 0.9 : 0.3 * Math.sin(T * 12 * x)); }, w, h, 240);
+    case 'lfo': return line(function (x) { var p = (x * 2) % 1; return p < 0.5 ? (p * 4 - 1) * 0.85 : (3 - p * 4) * 0.85; }, w, h, 80);
+    case 'env': return line(function (x) { return x < 0.05 ? (x / 0.05 * 1.7 - 0.85) : (Math.exp(-(x - 0.05) * 4) * 1.7 - 0.85); }, w, h, 120);
+    case 'rand': var dd = ''; for (var i = 0; i < 8; i++) { var y = h * 0.15 + r() * h * 0.7; dd += (i ? 'L' : 'M') + (i * w / 8).toFixed(1) + ' ' + y.toFixed(1) + 'L' + ((i + 1) * w / 8).toFixed(1) + ' ' + y.toFixed(1); } return dd;
+    case 'seq': return bars([0.9, 0.3, 0.6, 0.2, 0.8, 0.45, 0.7, 0.15], w, h);
+    case 'follow': return line(function (x) { return Math.abs(Math.sin(T * 1.5 * x)) * (0.6 + 0.4 * Math.sin(T * 5 * x)) * 1.6 - 0.8; }, w, h, 120);
+    case 'drift': return line(function (x) { return 0.6 * Math.sin(T * 0.7 * x + 0.5) + 0.25 * Math.sin(T * 2.3 * x); }, w, h, 100);
+    case 'logic': return line(function (x) { return sq(x, 3) * (sq(x, 5) > 0 ? 1 : -1) > 0 ? 0.7 : -0.7; }, w, h, 400);
+    case 'math': return line(function (x) { return Math.max(Math.sin(T * 2 * x), Math.sin(T * 3 * x + 1)) * 0.85; }, w, h, 200);
+    case 'clock': return line(function (x) { return ((x * 8) % 1) < 0.12 ? 0.8 : -0.8; }, w, h, 400);
+    case 'physics': return line(function (x) { var p = (x * 4 * (1 + x)) % 1; return (Math.abs(Math.sin(Math.PI * p)) * Math.exp(-x * 2)) * 1.7 - 0.85; }, w, h, 300);
+  }
+  return '';
+}
+var MODC = ['#2F5BFF', '#FF6B1A', '#C99700', '#12A150', '#E8337F', '#0E9FBF'];
+var FAM = [
+  { name: 'SOURCE', desc: 'Откуда берётся звук', items: [
+    ['OSC', 'osc', 'Классика: пила, квадрат, синус, sync, FM-вход'],
+    ['WAVE', 'wave', 'Волновые таблицы, свои из любого сэмпла'],
+    ['NOISE', 'noise', 'Белый → коричневый, crackle, пыль'],
+    ['GRAIN', 'grain', 'Гранулятор: перетащи сэмпл прямо в ячейку'],
+    ['INPUT', 'input', 'Внешний звук или сайдчейн из DAW'],
+    ['PLUCK', 'pluck', 'Физмодель струны и резонатора'] ] },
+  { name: 'SHAPE', desc: 'Тембр и характер', items: [
+    ['FILTER', 'filter', 'LP · BP · HP · NOTCH, 12/24 дБ, самовозбуждение'],
+    ['FOLD', 'fold', 'Вейвфолдер в духе западного побережья'],
+    ['DRIVE', 'drive', 'Лента, лампа, диод, bitcrush'],
+    ['RING', 'ring', 'Кольцевой модулятор, частотный сдвиг'],
+    ['COMB', 'comb', 'Гребенчатый фильтр, настраивается по нотам'],
+    ['FORMANT', 'formant', 'Гласные: морф A–E–I–O–U'] ] },
+  { name: 'SPACE', desc: 'Время и пространство', items: [
+    ['DELAY', 'delay', 'Ping-pong, лента, дрожание, фидбэк до ∞'],
+    ['VERB', 'verb', 'От комнаты до бесконечного холла'],
+    ['SHIFT', 'shift', 'Питч-шифт, спектральный размыв'],
+    ['FREEZE', 'freeze', 'Застывший спектр — основа текстур'],
+    ['CHORUS', 'chorus', 'Хорус, фленджер, ансамбль'],
+    ['LOOP', 'loop', 'Лупер с обратным ходом и скоростью'] ] },
+  { name: 'CONTROL', desc: 'Модуляторы — у каждого свой цвет', ctrl: true, items: [
+    ['LFO', 'lfo', 'Синк к темпу, форма-морф, фаза на голос'],
+    ['ENV', 'env', 'ADSR и мультисегментная огибающая'],
+    ['RAND', 'rand', 'S&H, плавный рандом, вероятность'],
+    ['SEQ', 'seq', 'Шаговый секвенсор с вероятностью шага'],
+    ['FOLLOW', 'follow', 'Огибающая громкости любой линии'],
+    ['DRIFT', 'drift', 'Медленный аналоговый дрейф'],
+    ['LOGIC', 'logic', 'AND · OR · XOR, компаратор, триггеры'],
+    ['MATH', 'math', 'Сумма, мин/макс, квантайзер, slew'],
+    ['CLOCK', 'clock', 'Делитель, эвклидовы ритмы, свинг'],
+    ['PHYSICS', 'physics', 'Прыгающий мяч, маятник, гравитация'] ] }
+];
+class Component extends DCLogic {
+  renderVals() {
+    var rows = [];
+    FAM.forEach(function (f) {
+      var items = f.items.map(function (it, i) { return { n: it[0], d: it[2], viz: viz(it[1], 200, 32), c: f.ctrl ? MODC[i % MODC.length] : '#EDEDE8' }; });
+      if (items.length <= 6) rows.push({ head: true, cont: false, tail: false, name: f.name, desc: f.desc, items: items });
+      else {
+        rows.push({ head: true, cont: false, tail: false, name: f.name, desc: f.desc, items: items.slice(0, 6) });
+        rows.push({ head: false, cont: true, tail: true, name: f.name, desc: '', items: items.slice(6) });
+      }
+    });
+    return { rows: rows };
+  }
+}
+</script>
+
+
+</body></html>

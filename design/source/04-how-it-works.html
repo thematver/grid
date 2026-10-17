@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ru"><head>
+<meta charset="utf-8">
+<title>WEFT — как это работает</title>
+<script src="47cafa71-3600-4617-8bfb-9302765fce9e"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>[fonts]</style>
+<style>
+body{margin:0;background:#E6E6E1}
+.m{font-family:'Geist Mono',ui-monospace,monospace}
+a{color:#141414}a:hover{color:#5C5C57}
+</style>
+</helmet>
+<div style="width: 1440px; height: 940px; box-sizing: border-box; padding: 56px 72px; background: #E6E6E1; color: #141414; font-family: 'Geist', system-ui, sans-serif; display: flex; flex-direction: column; gap: 32px">
+
+  <div style="display: flex; align-items: flex-end; justify-content: space-between; height: 96px">
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <span class="m" style="font-size: 12px; letter-spacing: 0.14em; color: #5C5C57">04 · HOW IT WORKS</span>
+      <h2 style="margin: 0; font-size: 44px; font-weight: 800; letter-spacing: -0.025em">Четыре жеста вместо кабелей</h2>
+    </div>
+    <span style="font-size: 15px; color: #3F3F3B; max-width: 420px; text-align: right; line-height: 1.45">Всё, что делает модуляр, — это четыре действия. Каждое занимает одно движение мышью.</span>
+  </div>
+
+  <!-- STEPS -->
+  <div style="height: 320px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px">
+
+    <div style="background: #F7F7F4; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+      <span class="m" style="font-size: 12px; color: #5C5C57">1 · ПОСТАВЬ</span>
+      <span style="font-size: 20px; font-weight: 700">Модуль в ячейку</span>
+      <span style="font-size: 14px; line-height: 1.45; color: #3F3F3B">Звук сам течёт слева направо. Порядок ячеек = порядок обработки. Никаких проводов.</span>
+      <div style="flex: 1; display: flex; align-items: center; gap: 6px">
+        <div style="flex: 1; height: 74px; border-radius: 9px; background: #FFFFFF; border: 1px solid #D2D2CC; padding: 8px; box-sizing: border-box; display: flex; flex-direction: column; gap: 6px">
+          <span class="m" style="font-size: 10px; font-weight: 600">WAVE</span>
+          <span style="flex: 1; background: #0F0F0E; border-radius: 4px"></span>
+        </div>
+        <span class="m" style="font-size: 12px; color: #8C8C86">›</span>
+        <div style="flex: 1; height: 74px; border-radius: 9px; background: #FFFFFF; border: 1px solid #D2D2CC; padding: 8px; box-sizing: border-box; display: flex; flex-direction: column; gap: 6px">
+          <span class="m" style="font-size: 10px; font-weight: 600">FOLD</span>
+          <span style="flex: 1; background: #0F0F0E; border-radius: 4px"></span>
+        </div>
+        <span class="m" style="font-size: 12px; color: #8C8C86">›</span>
+        <div style="flex: 1; height: 74px; border-radius: 9px; border: 1.5px dashed #141414; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px">
+          <span style="font-size: 20px; line-height: 1">+</span>
+          <span class="m" style="font-size: 9px">FILTER</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="background: #F7F7F4; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+      <span class="m" style="font-size: 12px; color: #5C5C57">2 · ПРОТЯНИ</span>
+      <span style="font-size: 20px; font-weight: 700">Цвет на ручку</span>
+      <span style="font-size: 14px; line-height: 1.45; color: #3F3F3B">Точку модулятора — на любую ручку. Кольцо показывает диапазон, тянешь кольцо — меняешь глубину.</span>
+      <div style="flex: 1; position: relative">
+        <svg width="100%" height="100%" sc-camel-view-box="0 0 280 120" aria-hidden="true" style="display: block; position: absolute; inset: 0">
+          <path d="M40 92 C 100 100, 150 20, 210 54" fill="none" stroke="#2F5BFF" stroke-width="2" stroke-dasharray="5 5" stroke-linecap="round"></path>
+          <circle cx="40" cy="92" r="9" fill="none" stroke="#2F5BFF" stroke-width="2.5"></circle>
+          <circle cx="40" cy="92" r="4" fill="#2F5BFF"></circle>
+          <path d="{{dragKnob.track}}" transform="translate(186 26)" fill="none" stroke="#CFCFC9" stroke-width="{{dragKnob.sw}}" stroke-linecap="round"></path>
+          <path d="{{dragKnob.val}}" transform="translate(186 26)" fill="none" stroke="#141414" stroke-width="{{dragKnob.sw}}" stroke-linecap="round"></path>
+          <path d="{{dragKnob.r1}}" transform="translate(186 26)" fill="none" stroke="#2F5BFF" stroke-width="{{dragKnob.mw}}" stroke-linecap="round"></path>
+          <circle cx="{{dragKnobC1}}" cy="{{dragKnobC2}}" r="{{dragKnob.rb}}" fill="#FFFFFF" stroke="#141414" stroke-width="1.3"></circle>
+        </svg>
+        <span class="m" style="position: absolute; left: 0; bottom: 0; font-size: 10px; color: #2F5BFF; font-weight: 600">① LFO</span>
+        <span class="m" style="position: absolute; right: 0; bottom: 0; font-size: 10px">CUT ±40%</span>
+      </div>
+    </div>
+
+    <div style="background: #F7F7F4; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+      <span class="m" style="font-size: 12px; color: #5C5C57">3 · ОТПРАВЬ</span>
+      <span style="font-size: 20px; font-weight: 700">Линию в линию</span>
+      <span style="font-size: 14px; line-height: 1.45; color: #3F3F3B">Выход линии — в MIX или в другую линию. Отправь назад — получишь фидбэк, как в настоящем модуляре.</span>
+      <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 8px">
+        <div style="display: flex; align-items: center; gap: 8px">
+          <span class="m" style="width: 26px; font-size: 14px; font-weight: 600">A</span>
+          <span style="flex: 1; height: 26px; border-radius: 6px; background: #FFFFFF; border: 1px solid #D2D2CC"></span>
+          <span class="m" style="font-size: 11px; width: 58px">→ C</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px">
+          <span class="m" style="width: 26px; font-size: 14px; font-weight: 600">B</span>
+          <span style="flex: 1; height: 26px; border-radius: 6px; background: #FFFFFF; border: 1px solid #D2D2CC"></span>
+          <span class="m" style="font-size: 11px; width: 58px">→ C</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px">
+          <span class="m" style="width: 26px; font-size: 14px; font-weight: 600">C</span>
+          <span style="flex: 1; height: 26px; border-radius: 6px; background: #141414"></span>
+          <span class="m" style="font-size: 11px; width: 58px; font-weight: 600">→ A ↺</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="background: #141414; color: #EDEDE8; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+      <span class="m" style="font-size: 12px; color: #A3A39D">4 · ИГРАЙ</span>
+      <span style="font-size: 20px; font-weight: 700">Сцены и мутации</span>
+      <span style="font-size: 14px; line-height: 1.45; color: #D6D6D0">Запомни 4 состояния и морфь между ними. MUTATE — шаг в сторону от удачного звука, всегда с отменой.</span>
+      <div style="flex: 1; display: flex; align-items: center; gap: 8px">
+        <span class="m" style="width: 44px; height: 44px; border-radius: 10px; border: 1px solid #3A3A37; display: flex; align-items: center; justify-content: center; font-weight: 600">A</span>
+        <span class="m" style="width: 44px; height: 44px; border-radius: 10px; background: #EDEDE8; color: #141414; display: flex; align-items: center; justify-content: center; font-weight: 600">B</span>
+        <span class="m" style="width: 44px; height: 44px; border-radius: 10px; border: 1px solid #3A3A37; display: flex; align-items: center; justify-content: center; font-weight: 600">C</span>
+        <span class="m" style="width: 44px; height: 44px; border-radius: 10px; border: 1px solid #3A3A37; display: flex; align-items: center; justify-content: center; font-weight: 600">D</span>
+        <span class="m" style="flex: 1; height: 44px; border-radius: 10px; background: #EDEDE8; color: #141414; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; letter-spacing: 0.12em">MUTATE</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- KNOB + CELL ANATOMY -->
+  <div style="flex: 1; display: flex; gap: 12px">
+    <div style="flex: 1.25; background: #F7F7F4; border-radius: 16px; padding: 24px 26px; display: flex; flex-direction: column; gap: 18px">
+      <div style="display: flex; align-items: baseline; justify-content: space-between">
+        <span style="font-size: 20px; font-weight: 700">Анатомия ручки</span>
+        <span class="m" style="font-size: 11px; color: #5C5C57">кольцо = источник · длина = глубина</span>
+      </div>
+      <div style="flex: 1; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; align-items: start">
+        <sc-for list="{{knobs}}" as="kb" hint-placeholder-count="5">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center">
+            <svg width="{{kb.k.s}}" height="{{kb.k.s}}" sc-camel-view-box="{{kb.k.vb}}" aria-hidden="true" style="display: block">
+              <path d="{{kb.k.track}}" fill="none" stroke="#CFCFC9" stroke-width="{{kb.k.sw}}" stroke-linecap="round"></path>
+              <path d="{{kb.k.val}}" fill="none" stroke="#141414" stroke-width="{{kb.k.sw}}" stroke-linecap="round"></path>
+              <path d="{{kb.k.r1}}" fill="none" stroke="{{kb.k.c1}}" stroke-width="{{kb.k.mw}}" stroke-linecap="round" stroke-dasharray="{{kb.k.dash1}}"></path>
+              <path d="{{kb.k.r2}}" fill="none" stroke="{{kb.k.c2}}" stroke-width="{{kb.k.mw}}" stroke-linecap="round"></path>
+              <circle cx="{{kb.k.c}}" cy="{{kb.k.c}}" r="{{kb.k.rb}}" fill="#FFFFFF" stroke="#141414" stroke-width="1.5"></circle>
+              <line x1="{{kb.k.px1}}" y1="{{kb.k.py1}}" x2="{{kb.k.px2}}" y2="{{kb.k.py2}}" stroke="#141414" stroke-width="3" stroke-linecap="round"></line>
+            </svg>
+            <span style="font-size: 14px; font-weight: 700">{{kb.t}}</span>
+            <span style="font-size: 13px; line-height: 1.4; color: #3F3F3B">{{kb.d}}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="flex: 1; background: #F7F7F4; border-radius: 16px; padding: 24px 26px; display: flex; flex-direction: column; gap: 18px">
+      <span style="font-size: 20px; font-weight: 700">Анатомия ячейки</span>
+      <div style="display: flex; gap: 22px; flex: 1">
+        <div style="width: 250px; flex-shrink: 0; background: #FFFFFF; border: 2px solid #141414; border-radius: 12px; padding: 12px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px; align-self: flex-start">
+          <div style="display: flex; align-items: center; gap: 6px">
+            <span class="m" style="width: 18px; height: 18px; border-radius: 50%; background: #141414; color: #FFFFFF; font-size: 10px; display: flex; align-items: center; justify-content: center">1</span>
+            <span style="font-size: 15px; font-weight: 700">FILTER</span>
+            <span style="font-size: 12px; color: #5C5C57; flex: 1">LP 24</span>
+            <span style="width: 8px; height: 8px; border-radius: 50%; background: #2F5BFF"></span>
+            <span style="width: 8px; height: 8px; border-radius: 50%; background: #FF6B1A"></span>
+            <span class="m" style="width: 18px; height: 18px; border-radius: 50%; background: #141414; color: #FFFFFF; font-size: 10px; display: flex; align-items: center; justify-content: center">2</span>
+          </div>
+          <div style="height: 70px; background: #0F0F0E; border-radius: 7px; position: relative">
+            <svg width="100%" height="70" sc-camel-view-box="0 0 220 70" sc-camel-preserve-aspect-ratio="none" aria-hidden="true" style="display: block"><path d="{{cellCurve}}" fill="none" stroke="#EDEDE8" stroke-width="1.6" vector-effect="non-scaling-stroke"></path></svg>
+            <span class="m" style="position: absolute; right: 6px; top: 6px; width: 18px; height: 18px; border-radius: 50%; background: #EDEDE8; color: #141414; font-size: 10px; display: flex; align-items: center; justify-content: center">3</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px">
+            <span style="width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid #141414; box-sizing: border-box"></span>
+            <span style="width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid #141414; box-sizing: border-box"></span>
+            <span style="flex: 1"></span>
+            <span class="m" style="width: 18px; height: 18px; border-radius: 50%; background: #141414; color: #FFFFFF; font-size: 10px; display: flex; align-items: center; justify-content: center">4</span>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px; font-size: 13px; line-height: 1.45">
+          <div style="display: flex; gap: 10px"><span class="m" style="font-weight: 600">1</span><span><b>Имя и тип.</b> Двойной клик — сменить модуль, параметры переедут по смыслу.</span></div>
+          <div style="display: flex; gap: 10px"><span class="m" style="font-weight: 600">2</span><span><b>Кто модулирует.</b> Цветные точки — список источников; наведи, чтобы подсветить их ручки.</span></div>
+          <div style="display: flex; gap: 10px"><span class="m" style="font-weight: 600">3</span><span><b>Живой сигнал.</b> Каждая ячейка — маленький осциллограф или кривая: патч читается глазами.</span></div>
+          <div style="display: flex; gap: 10px"><span class="m" style="font-weight: 600">4</span><span><b>Две главные ручки.</b> Остальное — в фокусе: клик по ячейке → большой дисплей и 4 энкодера.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:940}}">
+function arc(cx, cy, r, a0, a1) {
+  if (a1 - a0 < 0.5) return '';
+  var p = function (a) { var t = (a - 90) * Math.PI / 180; return [cx + r * Math.cos(t), cy + r * Math.sin(t)]; };
+  var s = p(a0), e = p(a1);
+  return 'M' + s[0].toFixed(2) + ' ' + s[1].toFixed(2) + ' A' + r.toFixed(2) + ' ' + r.toFixed(2) + ' 0 ' + ((a1 - a0) > 180 ? 1 : 0) + ' 1 ' + e[0].toFixed(2) + ' ' + e[1].toFixed(2);
+}
+function knob(s, v, mods) {
+  mods = mods || [];
+  var c = s / 2, rb = s * 0.27, rt = s * 0.36, r1 = s * 0.43, r2 = s * 0.49, a = -135 + 270 * v;
+  var ring = function (r, m) { if (!m) return ''; var b = Math.max(-135, Math.min(135, a + 270 * m.d)); return arc(c, c, r, Math.min(a, b), Math.max(a, b)); };
+  var t = (a - 90) * Math.PI / 180;
+  return { s: s, c: c, rb: rb, vb: '0 0 ' + s + ' ' + s, track: arc(c, c, rt, -135, 135), val: arc(c, c, rt, -135, a),
+    r1: ring(r1, mods[0]), c1: mods[0] ? mods[0].c : 'none', dash1: mods[0] && mods[0].dash ? mods[0].dash : 'none',
+    r2: ring(r2, mods[1]), c2: mods[1] ? mods[1].c : 'none',
+    px1: c + Math.cos(t) * rb * 0.25, py1: c + Math.sin(t) * rb * 0.25, px2: c + Math.cos(t) * rb * 0.9, py2: c + Math.sin(t) * rb * 0.9,
+    sw: Math.max(1.6, s * 0.045), mw: Math.max(2, s * 0.05) };
+}
+function resp(w, h, cut, res) {
+  var fc = 20 * Math.pow(1000, cut), Q = 0.7 + res * 3, d = '';
+  for (var i = 0; i <= 140; i++) {
+    var u = 20 * Math.pow(1000, i / 140) / fc, den = Math.pow(1 - u * u, 2) + Math.pow(u / Q, 2);
+    var db = 20 * Math.log10(1 / den), y = Math.max(2, Math.min(h - 2, (18 - db) / 66 * h));
+    d += (i ? 'L' : 'M') + (i / 140 * w).toFixed(1) + ' ' + y.toFixed(1);
+  }
+  return d;
+}
+class Component extends DCLogic {
+  renderVals() {
+    var dragKnob = knob(48, 0.5, [{ d: 0.3, c: '#2F5BFF' }]);
+    var knobs = [
+      { t: 'Чистая', d: 'Только значение. Без колец — ничего не двигает.', k: knob(96, 0.45, []) },
+      { t: 'Один источник', d: '① LFO, +40%. Кольцо — коридор движения.', k: knob(96, 0.45, [{ d: 0.4, c: '#2F5BFF' }]) },
+      { t: 'Два источника', d: 'Кольца складываются наружу, порядок = порядок подключения.', k: knob(96, 0.45, [{ d: 0.3, c: '#2F5BFF' }, { d: 0.22, c: '#FF6B1A' }]) },
+      { t: 'Инверсия', d: '⑤ FOLLOW, −20%. Кольцо уходит против часовой.', k: knob(96, 0.55, [{ d: -0.2, c: '#E8337F' }]) },
+      { t: 'Аудио-рейт', d: 'Источник — выход ячейки (A1~). Пунктир = скорость звука.', k: knob(96, 0.5, [{ d: 0.25, c: '#141414', dash: '2 3' }]) }
+    ];
+    return { dragKnob: dragKnob, dragKnobC1: 186 + 24, dragKnobC2: 26 + 24, knobs: knobs, cellCurve: resp(220, 70, 0.5, 0.45) };
+  }
+}
+</script>
+
+
+</body></html>
