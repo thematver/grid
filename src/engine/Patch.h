@@ -50,6 +50,7 @@ struct MacroData
 
 struct SceneData
 {
+    std::string name;     // shown at the morph-pad corners, e.g. "dry glass"
     bool stored = false;
     std::array<float, kNumMorphable> values {};   // cells (16 x 4) then slots (8 x 4)
 };
